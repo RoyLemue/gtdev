@@ -25,7 +25,7 @@ class BdXML(object):
 		if path=="":
 			path=os.path.abspath(".")
 		if not os.path.exists(path+"/"+projectname):
-			print "Creating Directory",path+"/"+projectname
+			print("Creating Directory", path + "/" + projectname)
 			os.mkdir(path+"/"+projectname)
 			
 		filename = path+"/"+projectname+"/"+projectname+'.xml'
@@ -42,11 +42,11 @@ class BdXML(object):
 			for stagenumber,stage in enumerate(self.stagelist):
 				stage.writeXML(dom_object,stagenumber)
 		except AttributeError:
-			print "Component has no xml output."
+			print("Component has no xml output.")
 			
 		#Nun wird alles in die Datei geschrieben
 		f = open(filename, "w")
 		dom_object.writexml(f, "", "\t", "\n","utf-8")
 		f.close()
-		
-		print "BladeDesigner XML File written to",filename
+
+		print("BladeDesigner XML File written to" + filename)

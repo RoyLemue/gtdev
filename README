@@ -25,8 +25,13 @@ However it has been tested extensively only on Linux.
 The following python modules have to be installed before the program can be run:
 - numpy
 - scipy
-- pyqt
-
+- PyQt4
+- ConfigParser
+- bladedesigner (included)
+- Pickle
+- dautil
+    - IPython
+    - pandas
 
 How to use
 ----------

@@ -11,9 +11,9 @@
 #turbofan.py
 #imports:
 import numpy
-from abstract import *
-import compressor,turbine,combChamber,nozzle
-from helper_methods import *
+from gtdev.abstract import *
+import gtdev.compressor, gtdev.turbine, gtdev.combChamber, gtdev.nozzle
+from gtdev.helper_methods import *
 import sys
 
 #===============================================================================
@@ -58,10 +58,10 @@ class Turbojet(AbstractTurbo):
 		self.initialize(self.aeroOutputParams)
 		
 		#Dictionary with subcomponents
-		self.subcomponentList=[ ["hpc", compressor.CompressorRadial("High Pressure Compressor")],\
-								["combc", combChamber.CombChamber("Combustion Chamber")],\
-								["hpt", turbine.Turbine("High Pressure Turbine")],\
-								["hn", nozzle.Nozzle("Nozzle for hot massflow")]]
+        self.subcomponentList = [["hpc", gtdev.compressor.CompressorRadial("High Pressure Compressor")], \
+                                 ["combc", gtdev.combChamber.CombChamber("Combustion Chamber")], \
+                                 ["hpt", gtdev.turbine.Turbine("High Pressure Turbine")], \
+                                 ["hn", gtdev.nozzle.Nozzle("Nozzle for hot massflow")]]
 		
 		#Initialise global variables from dictionary
 		self.setVariablesFromList(self.subcomponentList)
@@ -169,7 +169,7 @@ class Turbojet(AbstractTurbo):
 				
 		
 		#Thermischer Wirkungsgrad (Strahlleistung/Wärmeeintrag)
-		print self.hpt.deltaP*self.eta_mech_hps-self.hpc.deltaP
+        print(self.hpt.deltaP * self.eta_mech_hps - self.hpc.deltaP)
 		self.eta_th=((self.mflow+self.combc.mflow_f)*self.c_9**2-self.mflow*self.c_0**2)/2./self.combc.deltaP
 		
 		#Vortriebswirkungsgrad

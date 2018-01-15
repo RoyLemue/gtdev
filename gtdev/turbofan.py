@@ -11,9 +11,9 @@
 #turbofan.py
 #imports:
 import numpy
-from abstract import *
-import compressor,turbine,combChamber,nozzle
-from helper_methods import *
+from .abstract import *
+import gtdev.compressor, gtdev.turbine, gtdev.combChamber, gtdev.nozzle
+from .helper_methods import *
 import sys
 
 #===============================================================================
@@ -67,14 +67,14 @@ class Turbofan(AbstractTurbo):
 		
 		#Dictionary with subcomponents
 		self.subcomponentList=[ \
-								["fan", compressor.CompressorAxial("Fan")],\
-								["hpc", compressor.CompressorRadial("High Pressure Compressor")],\
-								["combc", combChamber.CombChamber("Combustion Chamber")],\
-								["hpt", turbine.Turbine("High Pressure Turbine")],\
-								["lpt", turbine.Turbine("Low Pressure Turbine")],\
-								["hn", nozzle.Nozzle("Nozzle for hot massflow")],\
-								["cn", nozzle.Nozzle("Nozzle for cold massflow")]\
-								]
+			["fan", gtdev.compressor.CompressorAxial("Fan")], \
+			["hpc", gtdev.compressor.CompressorRadial("High Pressure Compressor")], \
+			["combc", gtdev.combChamber.CombChamber("Combustion Chamber")], \
+			["hpt", gtdev.turbine.Turbine("High Pressure Turbine")], \
+			["lpt", gtdev.turbine.Turbine("Low Pressure Turbine")], \
+			["hn", gtdev.nozzle.Nozzle("Nozzle for hot massflow")], \
+			["cn", gtdev.nozzle.Nozzle("Nozzle for cold massflow")] \
+			]
 		
 		#Initialise global variables from dictionary
 		self.setVariablesFromList(self.subcomponentList)
@@ -250,9 +250,9 @@ class Turbofan(AbstractTurbo):
 					self.mflow=self.mflow[0]
 		except:
 			if str(sys.exc_info()[1])=="Error occured while calling the Python function named iterate_fun":
-				raise Exception,"Thrust iteration didn't converge. Cycle impossible / Thrust too high."
-				print sys.exc_info()
-				
+				raise Exception("Thrust iteration didn't converge. Cycle impossible / Thrust too high.")
+				print(sys.exc_info())
+
 		#SFC
 		self.SFC=self.combc.mflow_f*3600./self.F*1000.
 		
@@ -358,21 +358,20 @@ class Turbofan(AbstractTurbo):
 		
 	def tsplot(self,widget):
 		#self.calcThermo()
-		import cyclePlotter
+		from dautil.plotting import CyclePlotter
 		from PyQt4.QtCore import SIGNAL
 		from PyQt4.QtGui import QDialog,QWidget, QVBoxLayout, QHBoxLayout,QPushButton,QSplitter
 		from matplotlib.backends.backend_qt4 import NavigationToolbar2QT as NavigationToolbar
 
 		
 		#plot=TsPlotter.TsPlotter("Tt0",self.T_tinf,0.0,self.p_tinf)
-		
 
-		tsplot=cyclePlotter.TsPlotter("",0,0,0)
+
+		tsplot = CyclePlotter.TsPlotter("", 0, 0, 0)
 		tsplot.pyl.clear()
 		tsplot.pWidget.format_labels()
 
-		
-		hsplot=cyclePlotter.HsPlotter("",0,0,0,0)
+		hsplot = CyclePlotter.HsPlotter("", 0, 0, 0, 0)
 		hsplot.pyl.clear()
 		hsplot.pWidget.format_labels()
 		
@@ -548,14 +547,14 @@ class Turbofan_Recalc(AbstractTurbo):
 		
 		#Dictionary with subcomponents
 		self.subcomponentList=[ \
-								["fan", compressor.CompressorAxial("Fan")],\
-								["hpc", compressor.CompressorRadial("High Pressure Compressor")],\
-								["combc", combChamber.CombChamber("Combustion Chamber")],\
-								["hpt", turbine.Turbine("High Pressure Turbine")],\
-								["lpt", turbine.Turbine("Low Pressure Turbine")],\
-								["hn", nozzle.Nozzle("Nozzle for hot massflow")],\
-								["cn", nozzle.Nozzle("Nozzle for cold massflow")]\
-								]
+			["fan", gtdev.compressor.CompressorAxial("Fan")], \
+			["hpc", gtdev.compressor.CompressorRadial("High Pressure Compressor")], \
+			["combc", gtdev.combChamber.CombChamber("Combustion Chamber")], \
+			["hpt", gtdev.turbine.Turbine("High Pressure Turbine")], \
+			["lpt", gtdev.turbine.Turbine("Low Pressure Turbine")], \
+			["hn", gtdev.nozzle.Nozzle("Nozzle for hot massflow")], \
+			["cn", gtdev.nozzle.Nozzle("Nozzle for cold massflow")] \
+			]
 		
 		#Initialise global variables from dictionary
 		self.setVariablesFromList(self.subcomponentList)
@@ -797,21 +796,20 @@ class Turbofan_Recalc(AbstractTurbo):
 		
 	def tsplot(self,widget):
 		#self.calcThermo()
-		import cyclePlotter
+		from dautil.plotting import CyclePlotter
 		from PyQt4.QtCore import SIGNAL
 		from PyQt4.QtGui import QDialog,QWidget, QVBoxLayout, QHBoxLayout,QPushButton,QSplitter
 		from matplotlib.backends.backend_qt4 import NavigationToolbar2QT as NavigationToolbar
 
 		
 		#plot=TsPlotter.TsPlotter("Tt0",self.T_tinf,0.0,self.p_tinf)
-		
 
-		tsplot=cyclePlotter.TsPlotter("",0,0,0)
+
+		tsplot = CyclePlotter.TsPlotter("", 0, 0, 0)
 		tsplot.pyl.clear()
 		tsplot.pWidget.format_labels()
 
-		
-		hsplot=cyclePlotter.HsPlotter("",0,0,0,0)
+		hsplot = CyclePlotter.HsPlotter("", 0, 0, 0, 0)
 		hsplot.pyl.clear()
 		hsplot.pWidget.format_labels()
 		

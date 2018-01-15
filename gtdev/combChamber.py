@@ -12,8 +12,8 @@
 #turbofan.py
 #imports:
 import numpy
-from abstract import *
-from helper_methods import *
+from gtdev.abstract import *
+from gtdev.helper_methods import *
 from scipy.optimize import fsolve
 
 
@@ -148,7 +148,7 @@ class CombChamber(AbstractTurbo):
 			origMa_3=self.Ma_3
 			self.calcMa_3()
 			if i==(maxIter-1):
-				raise Exception, "Max. Iteration exceeded -> Combustion Chamber. Try using different entry conditions!"
+                raise Exception("Max. Iteration exceeded -> Combustion Chamber. Try using different entry conditions!")
 			if numpy.abs(self.Ma_3-origMa_3)<tolerance:
 				break
 	

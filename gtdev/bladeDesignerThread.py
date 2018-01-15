@@ -1,7 +1,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-import bladeDesignerXML
-
+from gtdev.bladeDesignerXML import *
+from gtdev.helper_methods import logger
 
 class BladeDesignerThread(QThread):
     def __init__(self,parent=None):
@@ -18,7 +18,7 @@ class BladeDesignerThread(QThread):
         self.start()
         
     def run(self):
-        xml=bladeDesignerXML.BdXML(self.stagelist)
+        xml = BdXML(self.stagelist)
         xml.writeTurboMachineXML(self.identification)
         try:
             from bladedesigner import turboMachine
@@ -26,5 +26,5 @@ class BladeDesignerThread(QThread):
             compbd=turboMachine.turboMachine(os.path.abspath(self.identification))
             compbd.computeTurboMachine()
             compbd.displayViewer()
-        except:
-            print "Ein Fehler ist aufgetreten. Ist der BladeDesigner installiert und richtig importiert?"
+        except Exception as e:
+            logger.error(e)
