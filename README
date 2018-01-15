@@ -1,0 +1,61 @@
+#===============================================================================
+# Gas Turbine Developer (c) Hummingbird - TUM Gas Turbines
+# Institute for Flight Propulsion, TU Munich
+# Author: Sebastian G. Barthmes, Sebastian Brehm, Jan Matheis, Peter Schöttl
+# Published under the Terms of GNU public licence v3
+#===============================================================================
+
+USER MANUAL
+
+
+Introduction
+------------
+
+Gas Turbine Developer a.k.a gtdev is an open source tool which assists the engineer in 
+developing a new gas turbine (1D Thermo- and Aerodynamics). It is created by the 
+student research group "Hummingbird - TUM Gas Turbines" placed at the LFA, TU Munich.
+Homepage : www.tum-gasturbines.de
+
+
+How to install
+--------------
+
+gtdev is written in python and works therefore on every machine where python is installed.
+However it has been tested extensively only on Linux.
+The following python modules have to be installed before the program can be run:
+- numpy
+- scipy
+- pyqt
+
+
+How to use
+----------
+
+For input either the GUI can be used by executing
+
+python gtdev.py
+
+or the provided classes may be used directly in so called project-scripts, which are unique for 
+every machine. In this script the boundary conditions of the configuration are defined.
+An example of this kind of script can be found in the projects/-folder. To use this,
+just execute
+
+python gtdev.py --file=<path/to/your/file
+
+
+Getting into it
+---------------
+
+gtdev uses the object orientated approach to compute the turbomachine, that means every part
+of the machine (e.g. compressor, turbine) is defined in a single independend class.
+These components or "objects" are combined and supervised in a configuration class (e.g. turbofan, turbojet),
+which determines how the single components work together.
+The advantage of this design is the easy expansion of the program to different configurations.
+The classes can be used and modified with just basic programming skills.
+
+
+GUI
+---
+
+If the in- or output-values of any component are not fully visible, please change the size of the gtdev-window (only the use of the 
+scrollbar will not be sufficient).

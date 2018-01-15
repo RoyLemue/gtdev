@@ -1,0 +1,25 @@
+DONE - exception handling von fehlenden parametern + ausgabe des betroffenen objekts
+DONE - eventuell flag-System entwickeln 
+DONE - Schaufelberechnung erweitern: Sehnenlaenge? Verwindungsgesetze?
+- Diffusorklasse (fuer Einlauf), evtl so anlegen, dass auch z.B. Nebenstromkanal damit z.B. mit Druckverlust etc. versehen werden kann
+  (evtl in die Duesenklasse integrieren?)
+- Kommentierung (vor allem hpc und combchamber)
+- Statische Belastungsberechnung von Axialen Kompressor/Turbinenschaufeln
+- Radialverdichter überarbeiten (3D-Auslegung)
+- Turbine überarbeiten (3D-Auslegung/Schaufelverwindung)
+- GUI um Komponentenspezifische Widgets erweitern -> Widgets schreiben (z.b. Schaufelverwindung, BD Schnittstelle)
+
+- Überarbeiten der Kollaboration von GUIControl, GUIcalcIO und AbstractTurbo
+	- Konsistenz-Checks einführen (Typenchecks etc.)
+	- Klare Interface-Definition (public & private Funktionen und Member-Variablen) 
+	- allgemein: stärkere Objekt-Orientierung
+	
+- Laden/Ändern/Speichern-Logik überarbeiten und ausfallsicher machen
+	
+- Restrukturierung der Modul-Systematik
+
+- Doxygen-Dokumentation
+	DONE - GUIControl.py
+	DONE - GUIcalcIO.py
+	- AbstractTurbo
+	- Komponenten
